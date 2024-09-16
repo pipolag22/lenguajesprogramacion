@@ -1,10 +1,11 @@
 import otraclase.Factura;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class Main {
-    public static void mai(String[] args){
+    public static void main(String[] args){
 
         Factura miFac = new Factura();
 
@@ -30,6 +31,14 @@ public class Main {
         misFacturas.add(miFac);
         misFacturas.add(miFac2);
         misFacturas.add(miFac3);
+
+        Function<Factura, Integer> InterfaceFuntion= new Function<Factura, Integer>() {
+            @Override
+            public Integer apply(Factura integer) {
+                return integer.getTotal()*2;
+            }
+        };
+
 
     Stream nuevoStream= misFacturas.stream().map(elem->elem.getTotal()*2);
 
