@@ -2,6 +2,7 @@ import otraclase.Factura;
 
 import java.util.ArrayList;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Main {
@@ -39,10 +40,35 @@ public class Main {
             }
         };
 
+        Function<Factura, Integer> interfaceFunction2;
 
     Stream nuevoStream= misFacturas.stream().map(elem->elem.getTotal()*2);
 
+
+        Function<? super Factura, ?> interfaceFunction;
+        misFacturas.stream().map(interfaceFunction);
+
     nuevoStream.forEach(System.out::println);
     nuevoStream.forEach(System.out::println);
+
+
+    //metodo filter
+
+        Predicate<Factura> miPredicado = new Predicate<Factura>() {
+            @Override
+            public boolean test(Factura total) {
+                if(total.getTotal()>2000){
+                    return true;
+                }else return false;
+            }
+        };
+
+        Predicate<Factura> miPredicado1= e->e.getTotal()>2000;
+
+        Stream nuevoStream2 = misFacturas.stream().filter(miPredicado);
+
+        Stream nuevoStream3 = misFacturas.stream().filter(factura -> factura.getTotal() > 2000);
+
+        Stream nuevoStream4 = misFacturas.stream().filter(miPredicado1);
 }
 }
